@@ -1,0 +1,73 @@
+{**
+ * My Application layout template.
+ *
+ * @param string   $basePath web base path
+ * @param string   $robots   tell robots how to index the content of a page (optional)
+ * @param array    $flashes  flash messages
+*}
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="">
+		<meta name="author" content="">
+
+		<title>Satis GUI</title>
+
+		<!-- Bootstrap core CSS -->
+		<link href="{$basePath}/css/bootstrap.min.css" rel="stylesheet">
+		<link href="{$basePath}/css/style.css" rel="stylesheet">
+		{block css}{/block}
+	</head>
+
+	<body>
+
+		<div class="navbar navbar-inverse" role="navigation" n:if="$user->isLoggedIn()">
+			<div class="container">
+				<div class="navbar-header">
+					<a class="navbar-brand" n:href="homepage:">Satis GUI</a>
+
+
+				</div>
+
+				<ul class="nav navbar-nav">
+					<li n:class="$presenter->isLinkCurrent('homepage:') ? active"><a n:href="homepage:">Home</a></li>
+					<li n:class="$presenter->isLinkCurrent('packages:') ? active"><a n:href="packages:">Manage packages</a></li>
+				</ul>
+
+				<ul class="nav navbar-nav navbar-right">
+					<li><a n:href="sign:out">logout</a></li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="container">
+
+			<div class="row">
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" n:snippet="flashes">
+					<div class="alert alert-{$flash->type} span12" n:foreach="$flashes as $flash">
+						<a class="close" data-dismiss="alert">×</a>
+						<span class="icon icon-{$flash->type}"></span>
+						<strong>{$flash->message}</strong>
+					</div>
+				</div>
+			</div>
+
+			{include content}
+
+
+		</div>
+		<script src="{$basePath}/js/ZeroClipboard.min.js"></script>
+		<script>
+		ZeroClipboard.config( { swfPath: {$basePath}+'js/ZeroClipboard.swf' } );
+		</script>
+		<script src="{$basePath}/js/jquery.js"></script>
+		<script src="{$basePath}/js/bootstrap.min.js"></script>
+		<script src="{$basePath}/js/netteForms.js"></script>
+		<script src="{$basePath}/js/main.js"></script>
+	</body>
+</html>
+

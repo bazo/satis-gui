@@ -1,0 +1,10 @@
+#!/usr/bin/env php
+<?php
+// Let bootstrap create Dependency Injection container.
+$container = require __DIR__ . '/app/bootstrap.php';
+
+// Run console
+if (PHP_SAPI === 'cli') {
+	$console = $container->getByType('Symfony\Component\Console\Application');
+	$console->run();
+}

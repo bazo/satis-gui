@@ -1,0 +1,37 @@
+{block content}
+
+<form class="form-inline" role="form" n:name="formAdd">
+	<div class="form-group">
+		<label n:name="type" >Type</label>
+		<input type="text" class="form-control" n:name="type">
+	</div>
+	<div class="form-group">
+		<label n:name="url">URL</label>
+		<input type="text" class="form-control" n:name="url">
+	</div>
+
+	<input n:name="btnSubmit" class="btn btn-primary">
+</form>
+
+<br><br>
+
+<a n:href="build!" class="btn btn-lg btn-success">Build</a>
+
+<br><br>
+
+<table class="table">
+	<tr>
+		<th>Type</th>
+		<th>URL</th>
+		<th></th>
+	</tr>
+
+	<tr n:foreach="$packages as $package">
+		<td>{$package->type}</td>
+		<td>{$package->url}</td>
+		<td><a n:href="delete! id => $package->id" onclick="confirm('Really delete package?');"><i class="glyphicon glyphicon-remove"></i> delete</a></td>
+	</tr>
+</table>
+
+
+{/block}
