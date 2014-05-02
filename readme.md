@@ -24,11 +24,11 @@ To customize the app create file app/config/config.local.neon
 Parameters you might want to change:
 
     parameters:
-    satis:
-        name: A Composer Repository
-        require-all: true
+        satis:
+            name: A Composer Repository
+            require-all: true
 
-    webhook:
-        password: webhookpassword
+        webhook:
+            password: webhookpassword
 
 Any other options for satis are suported too, just the provide the right structure under the satis key
