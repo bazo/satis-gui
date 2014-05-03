@@ -2,7 +2,7 @@
 	"name": "bazo/satis-gui",
 	"description": "Satis GUI",
 	"type": "project",
-	"license": ["BSD-3-Clause", "GPL-2.0", "GPL-3.0"],
+	"license": ["MIT"],
 	"authors": [
 		{
 			"name": "Martin Bažík",
@@ -10,17 +10,12 @@
 		}
 	],
 	"require": {
-		"php": ">= 5.5.0",
+		"php": ">= 5.4.0",
 		"nette/nette": "@dev",
 		"composer/satis": "@dev",
 		"bazo/nette-console-extension": "@dev"
 	},
 	"require-dev": {
 	},
-	"minimum-stability": "dev",
-	"extra": {
-		"branch-alias": {
-			"dev-master": "2.2-dev"
-		}
-	}
+	"minimum-stability": "dev"
 }
