@@ -3,13 +3,17 @@ Satis GUI
 
 Installation
 
-run
+    composer create-project bazo/satis-gui
+
+then run
 
     cli app:install
 
-create user
+create a user
 
     cli user:create name password
+
+login, add packages through gui
 
 build packages.json
 
