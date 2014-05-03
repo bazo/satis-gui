@@ -44,8 +44,12 @@ class Install extends Command
 	{
 		$db = $this->container->getByType('Nette\Database\Connection');
 
-		$db->query(self::USERS_TABLE_DDL);
-		$db->query(self::PACKAGES_TABLE_DDL);
+		try {
+			$db->query(self::USERS_TABLE_DDL);
+			$db->query(self::PACKAGES_TABLE_DDL);
+		} catch (\PDOException $e) {
+			$output->writeln(sprintf('<error>%s</error>', $e->getMessage()));
+		}
 
 		$output->writeln('App installed');
 	}
