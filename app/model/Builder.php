@@ -27,9 +27,10 @@ class Builder
 	}
 
 
-	public function build()
+	public function build(array $packages = [])
 	{
-		$command = sprintf('php %s build %s %s', escapeshellarg($this->binFile), escapeshellarg($this->configFile), escapeshellarg($this->outputDir));
+		$packageList = implode(' ', $packages);
+		$command = sprintf('php %s build %s %s %s', escapeshellarg($this->binFile), escapeshellarg($this->configFile), escapeshellarg($this->outputDir), $packageList);
 
 		$output = [];
 		$returnVar = NULL;
@@ -38,6 +39,8 @@ class Builder
 		if ($returnVar !== 0) {
 			throw new \RuntimeException(implode(' ', $output));
 		}
+
+		return $output;
 	}
 
 

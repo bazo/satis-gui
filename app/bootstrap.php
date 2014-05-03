@@ -1,11 +1,21 @@
 <?php
 
+use Nette\Configurator;
+use Nette\Utils\Strings;
+
 require __DIR__ . '/shortcuts.php';
 require __DIR__ . '/../vendor/autoload.php';
 
-$configurator = new Nette\Configurator;
+$configurator = new Configurator;
 
-//$configurator->setDebugMode(TRUE);  // debug mode MUST NOT be enabled on production server
+$debugMode = FALSE;
+
+$debugSwitchFile = __DIR__ . '/config/debug';
+if (file_exists($debugSwitchFile)) {
+	$debugMode = Strings::trim(mb_strtolower(file_get_contents($debugSwitchFile))) === 'true' ? TRUE : FALSE;
+}
+
+$configurator->setDebugMode($debugMode);
 $configurator->enableDebugger(__DIR__ . '/../log');
 
 $configurator->setTempDirectory(__DIR__ . '/../temp');

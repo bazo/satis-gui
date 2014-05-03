@@ -4,6 +4,7 @@ namespace Console\Commands;
 
 use Nette\DI\Container;
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
@@ -30,15 +31,19 @@ class Build extends Command
 	protected function configure()
 	{
 		$this->setName('satis:build')
+				->addArgument('packages', InputArgument::OPTIONAL, 'list of packages you want to rebuild', '')
 				->setDescription('build');
 	}
 
 
 	protected function execute(InputInterface $input, OutputInterface $output)
 	{
-		$builder = $this->container->getByType('App\Model\Builder');
+		$output->writeln('building package.json...');
 
-		$builder->build();
+		$packages = explode(' ', $input->getArgument('packages'));
+
+		$builder = $this->container->getByType('App\Model\Builder');
+		$builder->build($packages);
 
 		$output->writeln('built package.json');
 	}

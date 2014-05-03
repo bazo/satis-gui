@@ -10,7 +10,7 @@ php:
 
 parameters:
 	configFile: %appDir%/../data/satis.json
-	outputDir: %wwwDir%
+	outputDir: %appDir%/../www
 	satis:
 		name: A Composer Repository
 		#homepage: %domain%
