@@ -7,6 +7,7 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Process\Process;
 
 
 
@@ -43,7 +44,13 @@ class Build extends Command
 		$packages = explode(' ', $input->getArgument('packages'));
 
 		$builder = $this->container->getByType('App\Model\Builder');
-		$builder->build($packages);
+		$builder->build($packages, function ($type, $buffer) use($output) {
+			if ($type === Process::ERR) {
+				$output->writeln(sprintf('<error>%s</error>', $buffer));
+			} else {
+				$output->writeln(sprintf('<info>%s</info>', $buffer));
+			}
+		});
 
 		$output->writeln('built package.json');
 	}

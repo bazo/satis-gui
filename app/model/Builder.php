@@ -2,6 +2,10 @@
 
 namespace App\Model;
 
+use Symfony\Component\Process\Process;
+
+
+
 /**
  * @author Martin Bažík <martin@bazik.sk>
  */
@@ -27,20 +31,15 @@ class Builder
 	}
 
 
-	public function build(array $packages = [])
+	public function build(array $packages = [], callable $callback = NULL)
 	{
 		$packageList = implode(' ', $packages);
 		$command = sprintf('php %s build %s %s %s', escapeshellarg($this->binFile), escapeshellarg($this->configFile), escapeshellarg($this->outputDir), $packageList);
 
-		$output = [];
-		$returnVar = NULL;
+		$process = new Process($command);
+		$process->run($callback);
 
-		exec($command, $output, $returnVar);
-		if ($returnVar !== 0) {
-			throw new \RuntimeException(implode(' ', $output));
-		}
-
-		return $output;
+		return $process->getOutput();
 	}
 
 
