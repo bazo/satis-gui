@@ -47,11 +47,10 @@ class Install extends Command
 		try {
 			$db->query(self::USERS_TABLE_DDL);
 			$db->query(self::PACKAGES_TABLE_DDL);
+			$output->writeln('App installed');
 		} catch (\PDOException $e) {
 			$output->writeln(sprintf('<error>%s</error>', $e->getMessage()));
 		}
-
-		$output->writeln('App installed');
 	}
 
 
