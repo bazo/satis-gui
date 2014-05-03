@@ -11,6 +11,7 @@ class HomepagePresenter extends SecuredPresenter
 	public function renderDefault()
 	{
 		$this->template->webhookPassword = $this->context->parameters['webhook']['password'];
+		$this->template->wwwDir = $this->context->parameters['wwwDir'];
 	}
 
 
