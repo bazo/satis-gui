@@ -13,7 +13,7 @@ use RuntimeException;
 /**
  * Homepage presenter.
  */
-class PackagesPresenter extends BasePresenter
+class PackagesPresenter extends SecuredPresenter
 {
 
 	/** @var PackageManager */
@@ -28,16 +28,6 @@ class PackagesPresenter extends BasePresenter
 	{
 		$this->packageManager = $packageManager;
 		$this->builder = $builder;
-	}
-
-
-	protected function startup()
-	{
-		parent::startup();
-
-		if (!$this->user->isLoggedIn()) {
-			$this->redirect('sign:in');
-		}
 	}
 
 

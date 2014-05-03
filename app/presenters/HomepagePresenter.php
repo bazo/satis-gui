@@ -5,7 +5,7 @@ namespace App\Presenters;
 /**
  * Homepage presenter.
  */
-class HomepagePresenter extends BasePresenter
+class HomepagePresenter extends SecuredPresenter
 {
 
 	public function renderDefault()
