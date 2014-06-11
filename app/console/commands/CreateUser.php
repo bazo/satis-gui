@@ -31,8 +31,8 @@ class CreateUser extends Command
 	protected function configure()
 	{
 		$this->setName('user:create')
-				->addArgument('login', InputArgument::OPTIONAL, 'login?')
-				->addArgument('password', InputArgument::OPTIONAL, 'password?')
+				->addArgument('login', InputArgument::REQUIRED, 'login?')
+				->addArgument('password', InputArgument::REQUIRED, 'password?')
 				->setDescription('Create a user');
 	}
 
@@ -44,7 +44,7 @@ class CreateUser extends Command
 
 		$this->container->getByType('App\Model\UserManager')->add($login, $password);
 
-		$output->writeln("User $user was added.");
+		$output->writeln("User $login was added.");
 	}
 
 
