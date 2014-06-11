@@ -3,7 +3,7 @@ Satis GUI
 
 Installation
 
-    composer create-project bazo/satis-gui
+    composer create-project bazo/satis-gui:@dev
 
 then run
 
