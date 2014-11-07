@@ -5,8 +5,8 @@
 # http://nette.org/security-warning
 #
 php:
-	date.timezone: Europe/Prague
-	# zlib.output_compression: yes
+	date.timezone: Europe/Bratislava
+	zlib.output_compression: yes
 
 parameters:
 	configFile: %appDir%/../data/satis.json
@@ -14,7 +14,12 @@ parameters:
 	satis:
 		name: A Composer Repository
 		#homepage: %domain%
-		require-all: true
+		require-all: TRUE
+		require-dependencies: TRUE
+		require-dev-dependencies: TRUE
+		archive:
+			directory: %outputDir%/dist
+			format: zip
 
 	webhook:
 		password: webhookpassword
@@ -36,7 +41,7 @@ nette:
 			lazy: yes
 
 extensions:
-	- Bazo\Console\DI\ConsoleExtension
+	- Kdyby\Console\DI\ConsoleExtension
 
 services:
 
@@ -48,6 +53,6 @@ services:
 
 	- App\Model\Builder(%configFile%, %outputDir%, %appDir%/../vendor/composer/satis/bin/satis)
 
-	- {class: Console\Commands\CreateUser, tags: [console.command]}
-	- {class: Console\Commands\Install, tags: [console.command]}
-	- {class: Console\Commands\Build, tags: [console.command]}
+	- {class: Console\Commands\CreateUser, tags: [kdyby.console.command]}
+	- {class: Console\Commands\Install, tags: [kdyby.console.command]}
+	- {class: Console\Commands\Build, tags: [kdyby.console.command]}

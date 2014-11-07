@@ -11,9 +11,9 @@
 	],
 	"require": {
 		"php": ">= 5.4.0",
-		"nette/nette": "@dev",
+		"nette/nette": "2.3.*",
 		"composer/satis": "@dev",
-		"bazo/nette-console-extension": "@dev"
+		"kdyby/console": "*"
 	},
 	"require-dev": {
 	},
